@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte2" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="938cf043-fa8c-4cfc-bd8f-43e49e68ec85">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="registro_academico" class="java.lang.Integer" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT E.nombre, E.registro_academico, E.dpi, E.unidad_academica, E.carrera, ROUND(SUM(C.horas),2) AS horas
+FROM estudiante E, control C
+WHERE E.registro_academico = $P!{registro_academico}
+AND E.registro_academico = C.registro_academico
+GROUP BY E.registro_academico]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="registro_academico" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dpi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="unidad_academica" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="carrera" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="horas" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="registro_academico">
+		<groupExpression><![CDATA[$F{registro_academico}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement x="38" y="0" width="54" height="20" uuid="e244a497-69fa-4240-b2f0-bf85807a371b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="92" y="0" width="178" height="20" uuid="fa5d1962-9ae0-4b1c-8ce7-d22af9d2e646"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="38" y="20" width="118" height="20" uuid="9b6c9201-ae47-4fec-8726-3686dcab5f38"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Registro Académico:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="156" y="20" width="114" height="20" uuid="b7cecef1-192d-4181-af6c-001c8655f16d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{registro_academico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="38" y="40" width="34" height="20" uuid="9c4675c1-30f6-49c8-8101-4ad0e735d586"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[DPI:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="72" y="40" width="198" height="20" uuid="99f34dd9-0ebe-46f5-8252-e14a8a4665e9"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{dpi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="292" y="0" width="100" height="20" uuid="bc867fdc-981c-4cf8-b127-79abd129e92e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Unidad Académica:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="392" y="0" width="180" height="20" uuid="44e1fd3a-b9dd-4c4c-8b67-f6209a271862"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{unidad_academica}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="292" y="20" width="46" height="20" uuid="e1a94cf1-1419-4e69-8256-92adebdb222e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Carrera:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="338" y="20" width="234" height="20" uuid="26ee3fa6-a6dc-49e6-95b8-8b23e07fe9c2"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{carrera}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="292" y="40" width="61" height="20" uuid="40d66d8f-af1a-49b6-b767-9b4b5e782a92"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Horas:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="353" y="40" width="219" height="20" uuid="5edd7268-c48e-496b-9252-fb4445590f80"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{horas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
